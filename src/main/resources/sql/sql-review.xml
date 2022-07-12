@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitc.gotrip.mapper.ReviewMapper">
+
+    <select id="selectBoardListPage" resultType="com.bitc.gotrip.dto.ReviewDto">
+        <![CDATA[
+--             SELECT review_pk, trip_pk, member_id, reserve_pk, review_title, review_create, re_ref, re_lev, re_seq
+            SELECT review_pk, trip_pk, member_id, reserve_pk, review_title, review_create
+            FROM review_board
+            WHERE deleted_yn = 'N'
+            ORDER BY review_pk DESC
+        ]]>
+    </select>
+
+<!--    <insert id="insertBoard" parameterType="com.bitc.gotrip.dto.ReviewDto" useGeneratedKeys="true" keyProperty="reviewPk">-->
+<!--        <![CDATA[-->
+<!--            INSERT INTO review_board (trip_pk, trip_name, member_id, reserve_pk, review_title, review_contents, review_score, review_create)-->
+<!--            VALUES (#{tripPk}, #{tripName}, #{memberId}, #{reservePk}, #{reviewTitle}, #{reviewContents},#{reviewScore}, NOW())-->
+<!--        ]]>-->
+<!--    </insert>-->
+
+<!--    <insert id="insertBoardFileList" parameterType="com.bitc.gotrip.dto.FileDto">-->
+<!--        <![CDATA[-->
+<!--            INSERT INTO file (table_num, pk_num, original_file_name, file_uuid, stored_file_path, file_size)-->
+<!--            VALUES-->
+<!--        ]]>-->
+<!--        <foreach collection="list" item="item" separator=",">-->
+<!--            (-->
+<!--            #{item.tableNum},-->
+<!--            #{item.pkNum},-->
+<!--            #{item.originalFileName},-->
+<!--            #{item.fileUuid},-->
+<!--            #{item.storedFilePath},-->
+<!--            #{item.fileSize}-->
+<!--            )-->
+<!--        </foreach>-->
+<!--    </insert>-->
+
+<!--    <select id="selectBoardDetail" resultType="com.bitc.blog_sjh.dto.BoardDto" parameterType="int">-->
+<!--        <![CDATA[-->
+<!--        SELECT board_idx, title, contents, create_id, create_date, update_id, update_date, hit_cnt-->
+<!--        FROM blog_board-->
+<!--        WHERE board_idx = #{boardIdx}-->
+<!--          AND deleted_yn = 'N'-->
+<!--        ]]>-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;    첨부파일 목록을 데이터베이스에 조회하는 쿼리   &ndash;&gt;-->
+<!--    <select id="selectBoardFileList" parameterType="int" resultType="com.bitc.blog_sjh.dto.BoardFileDto">-->
+<!--        <![CDATA[-->
+<!--        SELECT idx, board_idx, original_file_name, FORMAT(ROUND(file_size / 1024), 0) AS file_size-->
+<!--        FROM blog_file-->
+<!--        WHERE board_idx = #{boardIdx}-->
+<!--          AND deleted_yn = 'N'-->
+<!--        ]]>-->
+<!--    </select>-->
+
+<!--    <update id="updateBoard" parameterType="com.bitc.blog_sjh.dto.BoardDto">-->
+<!--        <![CDATA[-->
+<!--            UPDATE blog_board-->
+<!--            SET title = #{title}, contents = #{contents}, update_id = #{updateId}, update_date = NOW()-->
+<!--            WHERE board_idx = #{boardIdx}-->
+<!--            AND deleted_yn = 'N'-->
+<!--        ]]>-->
+<!--    </update>-->
+
+<!--    <delete id="deleteBoard" parameterType="int">-->
+<!--        <![CDATA[-->
+<!--            UPDATE blog_board-->
+<!--            SET deleted_yn = 'Y'-->
+<!--            WHERE board_idx = #{boardIdx}-->
+<!--        ]]>-->
+<!--    </delete>-->
+
+<!--&lt;!&ndash;  map : map 타입은 Java 의 HashMap(매개변수가 여러개지만 Dto 타입을 생성하기 애매할 경우)을 의미함 &ndash;&gt;-->
+<!--&lt;!&ndash;  map 타입은 매개변수가 2 - 3 정도 사용되어 Dto 타입을 생성하기 애매할 경우 사용 (Mapper 파일에서 매개변수에 @Param 지정 필수) &ndash;&gt;-->
+<!--    <select id="selectBoardFileInfo" parameterType="map" resultType="com.bitc.blog_sjh.dto.BoardFileDto">-->
+<!--        <![CDATA[-->
+<!--            SELECT  original_file_name, stored_file_path, file_size-->
+<!--            FROM blog_file-->
+<!--            WHERE idx = #{idx}-->
+<!--            AND board_idx = #{boardIdx}-->
+<!--            AND deleted_yn = 'N'-->
+<!--        ]]>-->
+<!--    </select>-->
+</mapper>
